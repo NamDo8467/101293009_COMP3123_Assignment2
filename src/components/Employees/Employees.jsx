@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState, useRef } from "react"
+import { Link, Navigate } from "react-router-dom"
 import axios from "axios"
 function Employees() {
 	const tableRowClass = "border p-3"
 	const tableRowHoverClass = "hover:bg-slate-200 hover:cursor-pointer"
 	const tableHeaderClass = "border bg-slate-400"
 
+	let employeeIdRef = useRef()
+	const [navigate, setNavigate] = useState(false)
 	const [employeeList, setEmployeeList] = useState([])
 	const URL = "https://101293009-comp-3123-assignment1.vercel.app/api/emp/employees"
 	useEffect(() => {
-		console.log("I run")
 		axios
 			.get(URL)
 			.then(response => {
-				console.log(response.data)
+				// console.log(response.data)
 				setEmployeeList(response.data)
 			})
 			.catch(error => {
@@ -21,6 +22,16 @@ function Employees() {
 				setEmployeeList([])
 			})
 	}, [])
+
+	const handleClick = e => {
+		e.preventDefault()
+		employeeIdRef.current = employeeIdRef.current.innerHTML
+		setNavigate(true)
+	}
+	if (navigate === true) {
+		return <Navigate to={`/employee/${employeeIdRef.current}`} />
+	} else {
+	}
 	return (
 		<div className='employees-container h-4/5 relative flex flex-col justify-center items-center'>
 			<h1 className='text-3xl font-bold text-center'>Employees Table</h1>
@@ -41,7 +52,10 @@ function Employees() {
 					<tbody>
 						{employeeList.map(employee => {
 							return (
-								<tr className={tableRowHoverClass}>
+								<tr className={tableRowHoverClass} key={employee._id} onClick={handleClick}>
+									<td ref={employeeIdRef} hidden>
+										{employee._id}
+									</td>
 									<td className={tableRowClass}>{employee.first_name + " " + employee.last_name}</td>
 									<td className={tableRowClass}>{employee.email}</td>
 									<td className={tableRowClass}>{employee.gender}</td>
