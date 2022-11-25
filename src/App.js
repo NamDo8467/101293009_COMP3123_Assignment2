@@ -5,6 +5,7 @@ import AddEmployee from "./components/Employees/Employee/AddEmployee"
 import Login from "./components/Login/Login"
 import SignUp from "./components/SignUp/SignUp"
 import Employee from "./components/Employees/Employee/Employee"
+import UpdateEmployee from "./components/Employees/Employee/UpdateEmployee"
 function App() {
 	return (
 		<div className='app h-screen relative'>
@@ -15,8 +16,9 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path='addEmployee' element={<AddEmployee />} />
 					<Route path='employee/:id' element={<Employee />} />
+					<Route path='updateEmployee/:id' element={<UpdateEmployee />} />
 				</Route>
-				
+
 				<Route path='*' element={<h1>Not found</h1>} />
 			</Routes>
 			<Routes></Routes>
