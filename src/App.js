@@ -1,8 +1,6 @@
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Home from "./components/Home"
 import NavBar from "./components/NavBar/NavBar"
-// import Employees from "./components/Employees/Employees"
-// import Employee from "./components/Employees/Employee/Employee"
 import AddEmployee from './components/Employees/Employee/AddEmployee'
 import Login from "./components/Login/Login"
 import SignUp from "./components/SignUp/SignUp"
