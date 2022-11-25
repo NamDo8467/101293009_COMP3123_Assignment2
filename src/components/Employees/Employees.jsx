@@ -61,7 +61,9 @@ function Employees() {
 									<td className={tableRowClass}>{employee.gender}</td>
 									<td className={tableRowClass}>{employee.salary}</td>
 									<td className={`flex justify-evenly ${tableRowClass}`}>
-										<button className='p-2 bg-green-500 rounded-md'>Update</button>
+										<button className='p-2 bg-green-500 rounded-md'>
+											<Link to={`/updateEmployee/${employee._id}`}>Update</Link>
+										</button>
 
 										<button className='p-2 bg-red-500 rounded-md'>Delete</button>
 									</td>
