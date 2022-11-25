@@ -5,7 +5,7 @@ import axios from "axios"
 function Login() {
 	let userNameRef = useRef()
 	let passwordRef = useRef()
-	let URL = "https://101293009-comp-3123-assignment1.vercel.app/api/user/login"
+	const URL = "https://101293009-comp-3123-assignment1.vercel.app/api/user/login"
 	// let errorBorderRef = useRef("border-purple-400")
 	const [error, setError] = useState("")
 	const [navigate, setNavigate] = useState(false)
@@ -34,9 +34,9 @@ function Login() {
 			<div className='image basis-3/5'>
 				<img src={loginImage} alt='login' />
 			</div>
-			<div className='inputs flex flex-col items-center justify-around basis-2/5 h-3/5 self-center'>
+			<div className='inputs flex flex-col items-center justify-around basis-2/5 h-4/5 self-center'>
 				<h1 className='text-3xl font-bold'>Login</h1>
-				<div className='error text-red-600 italic'>{error}</div>
+				<span className='error text-red-600 italic'>{error}</span>
 				<input
 					ref={userNameRef}
 					type='text'
