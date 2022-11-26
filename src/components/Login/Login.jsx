@@ -31,7 +31,7 @@ function Login() {
 	}
 	return (
 		<div className='login-container flex h-5/6 w-3/4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-			<div className='image basis-3/5'>
+			<div className='image basis-3/5 self-center'>
 				<img src={loginImage} alt='login' />
 			</div>
 			<div className='inputs flex flex-col items-center justify-around basis-2/5 h-4/5 self-center'>
