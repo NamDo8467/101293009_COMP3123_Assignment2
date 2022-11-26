@@ -8,18 +8,20 @@ function Employees() {
 
 	let employeeIdRef = useRef()
 	const [navigate, setNavigate] = useState(false)
+	const [reload, setReload] = useState(false)
 	const [employeeList, setEmployeeList] = useState([])
-	const URL = "https://101293009-comp-3123-assignment1.vercel.app/api/emp/employees"
+	const URL = "https://101293009-comp-3123-assignment1.vercel.app/api/emp/employees/"
+
 	useEffect(() => {
 		axios
 			.get(URL)
 			.then(response => {
-				// console.log(response.data)
 				setEmployeeList(response.data)
 			})
 			.catch(error => {
 				console.log(error)
-				setEmployeeList([])
+
+				// setEmployeeList([])
 			})
 	}, [])
 
@@ -28,9 +30,26 @@ function Employees() {
 		employeeIdRef.current = employeeIdRef.current.innerHTML
 		setNavigate(true)
 	}
+	const handleDelete = e => {
+		e.stopPropagation()
+		e.preventDefault()
+		// console.log(employeeIdRef.current.innerHTML)
+		axios
+			.post(`${URL}delete`, { id: employeeIdRef.current.innerHTML })
+			.then(response => {
+				console.log(response)
+				setReload(true)
+				// setEmployeeList([])
+			})
+			.catch(error => {
+				setReload(true)
+				console.log(error)
+			})
+	}
 	if (navigate === true) {
 		return <Navigate to={`/employee/${employeeIdRef.current}`} />
-	} else {
+	} else if (reload === true) {
+		window.location.reload()
 	}
 	return (
 		<div className='employees-container h-4/5 relative flex flex-col justify-center items-center'>
@@ -65,7 +84,9 @@ function Employees() {
 											<Link to={`/updateEmployee/${employee._id}`}>Update</Link>
 										</button>
 
-										<button className='p-2 bg-red-500 rounded-md'>Delete</button>
+										<button className='p-2 bg-red-500 rounded-md' onClick={handleDelete}>
+											Delete
+										</button>
 									</td>
 								</tr>
 							)
