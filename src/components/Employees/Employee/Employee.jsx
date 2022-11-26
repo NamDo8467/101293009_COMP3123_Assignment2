@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import axios from "axios"
 function Employee() {
 	const { id } = useParams()
@@ -17,6 +17,9 @@ function Employee() {
 				setEmployee({})
 			})
 	}, [URL])
+	if (!localStorage.getItem("login")) {
+		return <Navigate to='/login' />
+	}
 	return (
 		<div className='border border-green-500 h-4/5 relative'>
 			<div className='employee-detail grid grid-cols-2 w-1/3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-purple-300 py-2'>

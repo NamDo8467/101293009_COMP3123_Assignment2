@@ -33,6 +33,9 @@ function AddEmployee() {
 	if (navigate === true) {
 		return <Navigate to="/" />
 	}
+	if (!localStorage.getItem("login")) {
+		return <Navigate to='/login' />
+	}
 	return (
 		<div className='h-4/5 flex justify-center items-center'>
 			<form className='h-5/6 w-1/3 border border-green-500 p-3 flex flex-col justify-evenly'>
